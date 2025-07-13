@@ -23,3 +23,15 @@ after_success:
   - docker push lingfungc/fibonacci-server
   - docker push lingfungc/fibonacci-worker
   - docker push lingfungc/fibonacci-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "fibonacci-sequence"
+  env: "Fibonacci-sequence-env"
+  bucket_name: "elasticbeanstalk-eu-north-1-193654903449"
+  bucket_path: "fibonacci-sequence"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY

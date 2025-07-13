@@ -1,0 +1,34 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "lingfungc/fibonacci-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "lingfungc/fibonacci-server",
+      "hostname": "server",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "lingfungc/fibonacci-worker",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "lingfungc/fibonacci-nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "server"]
+    }
+  ]
+}
